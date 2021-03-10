@@ -16,8 +16,9 @@ func (StrDB *StrDB) Photos(c *gin.Context) {
 		albums models.Photos
 		result gin.H
 	)
+	param := c.Param("ID")
 
-	resp, err := http.Get("https://jsonplaceholder.typicode.com/albums/1")
+	resp, err := http.Get("https://jsonplaceholder.typicode.com/photos/1" + param)
 	if err != nil {
 		log.Fatal(err)
 	}
