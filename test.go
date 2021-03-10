@@ -5,7 +5,7 @@ import (
 	"task-day-11/controllers"
 	"task-day-11/models"
 
-	"github.com/gin-gionic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 
 	//routes
 	routing.GET("/comment", strDB.Comment)
-	routing.GET("/albums", strDB.Albums)
+	routing.GET("/photos", strDB.Photos)
 
 	request.Run()
 }

@@ -29,7 +29,7 @@ func (StrDB *StrDB) Comment(c *gin.Context) {
 
 	// Comment struct
 	type Comment struct {
-		PostID uint   `json:"post_id"`
+		PostID uint   `json:"post_Id"`
 		ID     uint   `gorm:"primarykey" json:"id"`
 		Name   string `json:"name"`
 		Email  string `json:"email"`

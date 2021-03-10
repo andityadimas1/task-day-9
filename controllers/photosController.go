@@ -1,4 +1,4 @@
-package controller
+package controllers
 
 import (
 	"encoding/json"
@@ -21,7 +21,7 @@ func (StrDB *StrDB) Photos(c *gin.Context) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	body, err := ioutil.ReadAll(resp.Title)
+	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -42,7 +42,7 @@ func (StrDB *StrDB) Photos(c *gin.Context) {
 	}
 	fmt.Println(getData)
 
-	albums.UserId = getData.AlbumId
+	albums.AlbumID = getData.AlbumId
 	albums.ID = getData.ID
 	albums.Title = getData.Title
 	StrDB.DB.Create(&albums)

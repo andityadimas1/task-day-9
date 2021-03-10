@@ -1,11 +1,10 @@
-package controller
+package controllers
 
 import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
-
 	"net/http"
 	"task-day-11/models"
 
@@ -22,7 +21,7 @@ func (StrDB *StrDB) Albums(c *gin.Context) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	title, err := ioutil.ReadAll(resp.Title)
+	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -33,15 +32,15 @@ func (StrDB *StrDB) Albums(c *gin.Context) {
 		Title  string `json:"title"`
 	}
 
-	fmt.Println(title)
-	fmt.Println(string(title))
+	fmt.Println(body)
+	fmt.Println(string(body))
 	getData := Albums{}
-	if error := json.Unmarshal(title, &getData); error != nil {
+	if error := json.Unmarshal(body, &getData); error != nil {
 		fmt.Println("error", error.Error())
 	}
 	fmt.Println(getData)
 
-	albums.UserId = getData.UserId
+	albums.UserID = getData.UserId
 	albums.ID = getData.ID
 	albums.Title = getData.Title
 	StrDB.DB.Create(&albums)
