@@ -26,23 +26,24 @@ func (StrDB *StrDB) Albums(c *gin.Context) {
 		log.Fatalln(err)
 	}
 
-	type Albums struct {
-		UserId uint   `json:"userId"`
-		ID     uint   `gorm:"primarykey" json:"id"`
-		Title  string `json:"title"`
-	}
+	// type Albums struct {
+	// 	UserId uint   `json:"userId"`
+	// 	ID     uint   `gorm:"primarykey" json:"id"`
+	// 	Title  string `json:"title"`
+	// }
 
 	fmt.Println(body)
 	fmt.Println(string(body))
-	getData := Albums{}
-	if error := json.Unmarshal(body, &getData); error != nil {
+	// getData := Albums{}
+
+	if error := json.Unmarshal(body, &albums); error != nil {
 		fmt.Println("error", error.Error())
 	}
-	fmt.Println(getData)
+	fmt.Println(albums)
 
-	albums.UserID = getData.UserId
-	albums.ID = getData.ID
-	albums.Title = getData.Title
+	// albums.UserID = getData.UserId
+	// albums.ID = getData.ID
+	// albums.Title = getData.Title
 	StrDB.DB.Create(&albums)
 
 	result = gin.H{

@@ -16,9 +16,9 @@ func (StrDB *StrDB) Photos(c *gin.Context) {
 		albums models.Photos
 		result gin.H
 	)
-	param := c.Param("ID")
+	// param := c.Param("ID")
 
-	resp, err := http.Get("https://jsonplaceholder.typicode.com/photos/1" + param)
+	resp, err := http.Get("https://jsonplaceholder.typicode.com/photos/1")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,25 +27,26 @@ func (StrDB *StrDB) Photos(c *gin.Context) {
 		log.Fatalln(err)
 	}
 
-	type Photos struct {
-		AlbumId      uint   `json:"albumId"`
-		ID           uint   `gorm:"primarykey" json:"id"`
-		Title        string `json:"title"`
-		Url          string `json:"url"`
-		ThumbnailUrl string `json:"thumbnailUrl"`
-	}
+	// type Photos struct {
+	// 	AlbumId      uint   `json:"albumId"`
+	// 	ID           uint   `gorm:"primarykey" json:"id"`
+	// 	Title        string `json:"title"`
+	// 	Url          string `json:"url"`
+	// 	ThumbnailUrl string `json:"thumbnailUrl"`
+	// }
 
 	fmt.Println(body)
 	fmt.Println(string(body))
-	getData := Photos{}
-	if error := json.Unmarshal(body, &getData); error != nil {
+
+	// getData := Photos{}
+	if error := json.Unmarshal(body, &albums); error != nil {
 		fmt.Println("error", error.Error())
 	}
-	fmt.Println(getData)
+	fmt.Println(albums)
 
-	albums.AlbumID = getData.AlbumId
-	albums.ID = getData.ID
-	albums.Title = getData.Title
+	// albums.AlbumID = getData.AlbumId
+	// albums.ID = getData.ID
+	// albums.Title = getData.Title
 	StrDB.DB.Create(&albums)
 
 	result = gin.H{

@@ -45,7 +45,8 @@ func main() {
 
 	auth.Use(middleware.MiddleWare().MiddlewareFunc())
 	{
-		auth.GET("/photos:ID", strDB.Photos)
+		auth.GET("/photos", strDB.Photos)
+		auth.GET("/comment", strDB.Comment)
 		auth.GET("/albums", strDB.Albums)
 	}
 

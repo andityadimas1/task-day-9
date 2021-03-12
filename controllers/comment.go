@@ -28,28 +28,23 @@ func (StrDB *StrDB) Comment(c *gin.Context) {
 	}
 
 	// Comment struct
-	type Comment struct {
-		PostID uint   `json:"post_Id"`
-		ID     uint   `gorm:"primarykey" json:"id"`
-		Name   string `json:"name"`
-		Email  string `json:"email"`
-		Body   string `json:"body"`
-	}
+	// type Comment struct {
+	// 	PostID uint   `json:"post_Id"`
+	// 	ID     uint   `gorm:"primarykey" json:"id"`
+	// 	Name   string `json:"name"`
+	// 	Email  string `json:"email"`
+	// 	Body   string `json:"body"`
+	// }
 
 	fmt.Println(body)
 	fmt.Println(string(body))
-	data := Comment{}
+	// data := Comment{}
 
-	if error := json.Unmarshal(body, &data); error != nil {
+	if error := json.Unmarshal(body, &comment); error != nil {
 		fmt.Println("Error ", err.Error())
 	}
-	fmt.Println(data)
+	fmt.Println(comment)
 
-	comment.PostID = data.PostID
-	comment.ID = data.ID
-	comment.Name = data.Name
-	comment.Email = data.Email
-	comment.Body = data.Body
 	StrDB.DB.Create(&comment)
 
 	result = gin.H{
