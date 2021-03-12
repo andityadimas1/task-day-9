@@ -7,7 +7,7 @@ import (
 )
 
 type Comment struct {
-	PostID    uint   `json:"post_id"`
+	PostID    uint   `json:"postId"`
 	ID        uint   `gorm:"primarykey" json:"id"`
 	Name      string `json:"name"`
 	Email     string `json:"email"`
